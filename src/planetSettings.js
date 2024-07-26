@@ -72,7 +72,7 @@ export function planetSettings(orbits) {
 
     const settings = {
         speed: 1,
-        showOrbit: 0,
+        showOrbit: false,
         asteroids: 10000,
     };
 
