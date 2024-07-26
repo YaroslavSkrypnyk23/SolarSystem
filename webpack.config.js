@@ -1,6 +1,7 @@
 const path = require('path');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 /** @type {import('webpack').Configuration} */
 const config = {
@@ -24,14 +25,14 @@ const config = {
                 },
             },
             {
-                test: /\.(css)$/,
+                test: /\.css$/,
                 use: ['style-loader', 'css-loader'],
             },
             {
                 test: /\.(png|jpg|gif|svg|mp3)$/,
                 type: 'asset/resource',
                 generator: {
-                    filename: 'assets/[name][ext][query]',
+                    filename: '[name][ext][query]',
                 },
             },
         ],
@@ -40,6 +41,13 @@ const config = {
         new CleanWebpackPlugin(),
         new HtmlWebpackPlugin({
             template: './index.html',
+        }),
+        new CopyWebpackPlugin({
+            patterns: [
+                { from: 'img', to: 'img' }, // Копіює вміст папки img безпосередньо в dist
+                { from: 'textures', to: 'textures' }, // Копіює вміст папки textures безпосередньо в dist
+                { from: 'audio', to: 'audio' }, // Копіює вміст папки audio безпосередньо в dist
+            ],
         }),
     ],
     devServer: {
