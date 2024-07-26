@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import '../style.css';
 import { init } from './init.js';
 import { Tween, Easing, update as tweenUpdate } from 'three/examples/jsm/libs/tween.module.js';
 import getStarfield from './stars.js';
